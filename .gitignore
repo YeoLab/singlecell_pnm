@@ -1,0 +1,12 @@
+
+# Downloaded files
+pfam2go*
+*.xls
+
+# Submit scripts
+*.sh
+
+# IPython/Jupyter notebook checkpoints
+.ipynb_checkpoints
+
+.nfs*
