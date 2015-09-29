@@ -1,0 +1,6 @@
+
+# Use Arial as the default font (most widely available)
+font.sans-serif     : Arial, Bitstream Vera Sans, Lucida Grande, Verdana, Geneva, Lucid, Avant Garde, sans-serif
+
+# Force text to be characters and not SVG outlines
+pdf.fonttype	    : 42

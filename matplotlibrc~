@@ -1,0 +1,7 @@
+
+# Use Helvetica Light as the default font
+font.sans-serif     : Helvetica, Arial, Bitstream Vera Sans, Lucida Grande, Verdana, Geneva, Lucid, Avant Garde, sans-serif
+font.weight 	    : light
+
+# Force text to be characters and not SVG outlines
+pdf.fonttype	    : 42
