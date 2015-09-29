@@ -1,7 +1,7 @@
 
 # Downloaded files
 pfam2go*
-*.xls
+*.xls*
 
 # Submit scripts
 *.sh
