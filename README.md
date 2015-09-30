@@ -95,7 +95,7 @@ As this is a large endeavor, the annotation steps are broken down into the follo
     1. Aggregate domains on pfam clans to see whether the entire concept of a protein's function has changed
 
 
-## 0.3 Gene feature annotations
+### 0.3 Gene feature annotations
 
 The gene annotations are less comprehensive and can be found in a single notebook. The steps are:
 
@@ -118,45 +118,60 @@ The gene annotations are less comprehensive and can be found in a single noteboo
 6. Intersect with genes associated with the cell cycle from Gene Ontology
 7. Cell surface markers [from ???????????????]
 
-## 0.4 Filter out non-alternative splicing events and create a *flotilla* `Study`
+### 0.4 Filter out non-alternative splicing events and create a *flotilla* `Study`
 
-# 1. Figure 1
+## 1. Figure 1
 
-## 1.0 Figure 1, part 1
+### 1.0 Figure 1, part 1
 
-## 1.1 Supplementary Figure 1
+### 1.1 Supplementary Figure 1
 
-## 1.2 Figure 1, part 2
+### 1.2 Figure 1, part 2
 
-# 2. Figure 2
+## 2. Figure 2
 
-## 2.0 Figure 2, part 1
+### 2.0 Figure 2, part 1
 
 1. Get splicing events with at least 20 single cell observations per celltype
 2. Estimate per-cellytpe modality for each splicing event using [`modish`](https://github.com/olgabot/modish)
 
-## 2.1 Supplementary Figure 2
+### 2.1 Supplementary Figure 2
 
-## 2.2 Figure 2, part 2
+### 2.2 Figure 2, part 2
 
 1. Investigate enrichment of properties from (0.2.\*) in each modality
 
-## 2.3 Figure 2, part 3
+### 2.3 Figure 2, part 3
 
 1. Subset the bed files created in 0.2.5 to get each (phenotype, modality) subset
 2. Submit a compute job to find enrichment of intron motifs in (phenotype, modality) vs (phenotype, other modalities) using [HOMER](http://homer.salk.edu/homer/index.html)
 
-## 2.4 Figure 2, part 4
+### 2.4 Figure 2, part 4
 
 1. Change in modalities between celltypes
 1. Venn diagrams of modalities
 2. Heatmap/checkerboard of how modalities change from one celltype to the next
 
-## 2.5 Figure 2, part 5
+### 2.5 Figure 2, part 5
 
 1. Gene Ontology (GO) enrichment of modaliites
     1. (phenotype, modality) vs (phenotype, other modalities)
     2. (phenotype, modality) vs (other phenotype, modality)
     3. (modality in any phenotype) vs (other modality in any phenotype)
     
-## 
+### 2.6 Figure 2, part 6
+
+1. Basewise conservation of flanking introns of modality exons.
+    1. Use basewise conservation CSVs created in (0.2.09)
+    
+## 3. Figure 3
+
+Changes in alternative splicing using change in modality and principal component analysis (PCA) on splicing events residing in constitutively expressed genes.
+
+## 4. Figure 4
+
+Introduces a new approach to visualizing and finding changing splicing events using `bonvoyage` to create a "Voyage Space"
+
+## 5. Figure 5
+
+Application of changing splicing events from modality finding using `modish`, voyaging events from `bon voyage`, and PCA on constitutively expressed, to the model of neurodegenerative disease of cellularly stressed motor neurons.
