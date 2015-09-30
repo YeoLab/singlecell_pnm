@@ -134,7 +134,7 @@ A figure to make the reader feel "warm and fuzzy" - show that our celltypes expr
 
 Introduces a new approach to categorizing alternative splicing events (really, any percent-based units) by grouping them into "modalities."
 
-![](2._Figure_2/b_ideal_modalities.png)
+![Ideal modalities for modality estimation](2._Figure_2/b_ideal_modalities.png)
 
 ### 2.0 Figure 2, part 1
 
@@ -164,6 +164,18 @@ Introduces a new approach to categorizing alternative splicing events (really, a
     1. (phenotype, modality) vs (phenotype, other modalities)
     2. (phenotype, modality) vs (other phenotype, modality)
     3. (modality in any phenotype) vs (other modality in any phenotype)
+ 
+#### Enrichment of this modality, within phenotype
+
+i.e. *"What GO categories are iPSC bimodal events enriched for, compared to other modalities in iPSC?"*
+
+#### Enrichment of this modality, across phenotypes
+
+i.e. *"What GO categories are iPSC bimodal events enriched for, compared to bimodal events in NPC and MN?"*
+
+#### Enrichment of this modality vs all other modalities across phenotypes
+
+i.e. *"What GO categories are bimodal events in iPSC, NPC and MN enriched for, over other modalities in those celltypes?"*
     
 ### 2.6 Figure 2, part 6
 
@@ -173,6 +185,9 @@ Introduces a new approach to categorizing alternative splicing events (really, a
 ## 3. Figure 3
 
 Changes in alternative splicing using change in modality and principal component analysis (PCA) on splicing events residing in constitutively expressed genes.
+
+![Venn diagram of modalities shared between celltypes](3._Figure_3/modalities_venn.png)
+![Heatmap of modality transitions between](3._Figure_3/modality_transitions_iPSC_to_MN_heatmap.png)
 
 ## 4. Figure 4
 
