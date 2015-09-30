@@ -134,7 +134,7 @@ A figure to make the reader feel "warm and fuzzy" - show that our celltypes expr
 
 Introduces a new approach to categorizing alternative splicing events (really, any percent-based units) by grouping them into "modalities."
 
-![](2.+Figure+2/b_ideal_modalities.png)
+![](2._Figure_2/b_ideal_modalities.png)
 
 ### 2.0 Figure 2, part 1
 
