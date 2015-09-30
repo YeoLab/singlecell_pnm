@@ -21,21 +21,21 @@ Some abbreviations:
     * A value between 0 and 1 (mathematically, [0, 1]) which represents what percentage of transcripts use this particular isoform, versus another isoform, e.g. isoform1 vs isoform2.
     * For example, for skipped exon events, with `exon1-exon2-exon3` as the three possible exons, this value represents what percentage of transcripts use `exon1-exon2-exon3` versus ones that use either `exon1-exon2-exon3` AND `exon1-exon3`
 
-# 0. Data collection and aggregation
+## 0. Data collection and aggregation
 
 Notebooks whose numbers begin with "0" are collecting data *before* any figures are created. Notebooks whose numbers begin 1-5 correspond to figures or data manipulation to do with that particular figure.
 
-## 0.0 Software versions
+### 0.0 Software versions
 
 To ensure posterity of results, this document shows the versions of all software used in this paper: Python, Perl, and command line tools.
 
-### Note for Olga: Submit `poshsplice`, `sj2psi`, `flotilla`, `bonvoyage`, `modish` to pypi
+#### Note for Olga: Submit `poshsplice`, `sj2psi`, `flotilla`, `bonvoyage`, `modish` to pypi
 
-## 0.1 Combine Data
+### 0.1 Combine Data
 
 This notebook reads the `sailfish` and STAR output files to create gene expression and mapping stats matrices, and splice junction files. This also subsets the data separately on iPSC, NPC, and MN samples (Figures 1-4) and saves the stressed motor neurons (sMNs for Figure 5) separately.
 
-## 0.2 Splicing annotations
+### 0.2 Splicing annotations
 
 A key aspect of this study is the annotation of alternative splicing events. We calcluate alternative splicing of skipped exon and mutually exclusive exons, based on read which uniquely mapped to a junction between exons. 
 
@@ -102,7 +102,8 @@ The gene annotations are less comprehensive and can be found in a single noteboo
 1. Get gene id, name, level, biotype from `gtf` file
 2. Calculate maximum number of exons per gene
 3. Intersect with annotations from [Gerstberger et al, *Nat Rev Genet* (2014)](http://www.ncbi.nlm.nih.gov/pubmed/25365966)
-    1. Transcription factors (TFs) - really defined as DNA binding proteins
+    1. Transcription factors (TFs) 
+        1. Really defined as any RNA biologist would define TFs: "stuff that binds DNA" - i.e. proteins which induce transcription versus chromatin remodelers vs topoisomerases are all included in this group.
     2. RNA binding proteins, which target ...
         1. mRNA
         2. snRNA
