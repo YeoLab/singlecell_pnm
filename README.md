@@ -122,6 +122,8 @@ The gene annotations are less comprehensive and can be found in a single noteboo
 
 ## 1. Figure 1
 
+A figure to make the reader feel "warm and fuzzy" - show that our celltypes express the marker genes that they are expected to, and alternative splicing specific to the celltypes.
+
 ### 1.0 Figure 1, part 1
 
 ### 1.1 Supplementary Figure 1
@@ -129,6 +131,10 @@ The gene annotations are less comprehensive and can be found in a single noteboo
 ### 1.2 Figure 1, part 2
 
 ## 2. Figure 2
+
+Introduces a new approach to categorizing alternative splicing events (really, any percent-based units) by grouping them into "modalities."
+
+![](2.+Figure+2/b_ideal_modalities.png)
 
 ### 2.0 Figure 2, part 1
 
