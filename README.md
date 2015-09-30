@@ -18,8 +18,10 @@ Some abbreviations:
         * Isoform 1: `exon1-exon3-exon4`
         * Isoform 2: `exon1-exon2-exon4`
 * Percent spliced-in (Psi/$\Psi$)
-    * A value between 0 and 1 which represents what percentage of transcripts use this particular isoform, versus another isoform
+    * A value between 0 and 1 (mathematically, [0, 1]) which represents what percentage of transcripts use this particular isoform, versus another isoform, e.g. isoform1 vs isoform2.
     * For example, for skipped exon events, with `exon1-exon2-exon3` as the three possible exons, this value represents what percentage of transcripts use `exon1-exon2-exon3` versus ones that use either `exon1-exon2-exon3` AND `exon1-exon3`
+
+# 0. Data collection and aggregation
 
 Notebooks whose numbers begin with "0" are collecting data *before* any figures are created. Notebooks whose numbers begin 1-5 correspond to figures or data manipulation to do with that particular figure.
 
@@ -41,12 +43,13 @@ As this is a large endeavor, the annotation steps are broken down into the follo
 
 1. Get annotated exons corresponding to splice junctions
     1. Identify all annotated (Gencode v19 - all levels) exons which are exactly upstream and downstream of all junctions.
-2. Create SE, MXE, and constitutive exon annotations *de novo*
+    2. Create (junction, direction, exon) triples for storage in a graph database using [`graphlite`](http://eugene-eeo.github.io/graphlite/)
+2. Create SE, MXE, and constitutive exon annotations *de novo* from (1)
     1. Aggregate exons and junctions into *de novo* splicing annotations of skipped exon (SE) and mutually exclusive exon (MXE) events. 
     2. If multiple flanking exons are available, use the shortest CDS sequence. If no CDS, the shortest sequence.
-3. Calculate percent spliced-in (Psi) scores for MXE and SE events
+3. Calculate percent spliced-in (Psi) scores for MXE and SE events from (2)
     1. Calculate percent spliced-in (Psi/$\Psi$) of SE and MXE events, based on junction reads.
-4. Splicing gene id, name annotations
+4. Splicing gene id, name annotations with event definitions from (2)
     1. Start a splicing event annotation table.
     2. Get gene ids corresponding to SE and MXE event annotations
     3. Use these ids to intersect with previously created gene annotations.
@@ -69,26 +72,26 @@ As this is a large endeavor, the annotation steps are broken down into the follo
     1. Read the pickled memory-mapped conservation file from (8)
     2. Get base-wise conservation of introns flanking alternative and constitutive exons. This will be used in Figure 2 when describing intron conservation of alternative splicing modalities.
 10. Transcribe isoforms to get RNA sequence
-11. Submit miRNA finding compute job
+11. Submit miRNA finding compute job on sequences from (10)
     1. Use first 17bp of microRNAs from [mirbase](http://www.mirbase.org/), since the ends of them are bound by Ago
     2. Use `RNAhybrid` to estimate which microRNAs may bind an isoform's transcript
-12. Properties of the isoforms' RNA sequence
+12. Properties of the isoforms' RNA sequence from (10)
     1. Use BioPython to calculate...
         1. GC content
         2. maybe: [Estiamte RNA structure (single or double stranded)]
     3. Add this information back to the splicing event annotation table.
 13. Translate isoforms to protein products
-14. Submit compute job for `hmmscan` on Pfam-A, calculate disordered scores
+14. Submit compute job for `hmmscan` on Pfam-A, calculate disordered scores on translations from (13)
     1. Use `hmmscan` to find protein domains on the isoform translations from (13)
     2. Use `IUPred` to calculate average disordered region score of each isoform
-15. Calculate properties of isoform protein products (isoelectric point, etc)
+15. Calculate properties of isoform protein products (isoelectric point, etc) on translations from (13)
     1. Properties calculated:
         1. Molecular weight
         2. Isoelectric point
         3. ...
     2. Read disordered scores from (14)
     3. Add this information back to the splicing event annotation table.
-16. Read `hmmscan` output and get domain switching events
+16. Read `hmmscan` output from (14) and get domain switching events
     1. Aggregate domains on pfam clans to see whether the entire concept of a protein's function has changed
 
 
@@ -113,3 +116,46 @@ The gene annotations are less comprehensive and can be found in a single noteboo
     1. This gives the "age" of the gene, relative to the origin of life
 6. Intersect with genes associated with the cell cycle from Gene Ontology
 7. Cell surface markers [from ???????????????]
+
+## 0.4 Filter out non-alternative splicing events and create a *flotilla* `Study`
+
+# 1. Figure 1
+
+## 1.0 Figure 1, part 1
+
+## 1.1 Supplementary Figure 1
+
+## 1.2 Figure 1, part 2
+
+# 2. Figure 2
+
+## 2.0 Figure 2, part 1
+
+1. Get splicing events with at least 20 single cell observations per celltype
+2. Estimate per-cellytpe modality for each splicing event using [`modish`](https://github.com/olgabot/modish)
+
+## 2.1 Supplementary Figure 2
+
+## 2.2 Figure 2, part 2
+
+1. Investigate enrichment of properties from (0.2.\*) in each modality
+
+## 2.3 Figure 2, part 3
+
+1. Subset the bed files created in 0.2.5 to get each (phenotype, modality) subset
+2. Submit a compute job to find enrichment of intron motifs in (phenotype, modality) vs (phenotype, other modalities) using [HOMER](http://homer.salk.edu/homer/index.html)
+
+## 2.4 Figure 2, part 4
+
+1. Change in modalities between celltypes
+1. Venn diagrams of modalities
+2. Heatmap/checkerboard of how modalities change from one celltype to the next
+
+## 2.5 Figure 2, part 5
+
+1. Gene Ontology (GO) enrichment of modaliites
+    1. (phenotype, modality) vs (phenotype, other modalities)
+    2. (phenotype, modality) vs (other phenotype, modality)
+    3. (modality in any phenotype) vs (other modality in any phenotype)
+    
+## 
