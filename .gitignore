@@ -4,7 +4,7 @@ pfam2go*
 *.xls*
 
 # Submit scripts
-*.sh
+*.sh*
 
 # IPython/Jupyter notebook checkpoints
 .ipynb_checkpoints
