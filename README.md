@@ -46,52 +46,53 @@ As this is a large endeavor, the annotation steps are broken down into the follo
     2. Create (junction, direction, exon) triples for storage in a graph database using [`graphlite`](http://eugene-eeo.github.io/graphlite/)
 2. Create SE, MXE, and constitutive exon annotations *de novo* from (1)
     1. Aggregate exons and junctions into *de novo* splicing annotations of skipped exon (SE) and mutually exclusive exon (MXE) events. 
-    2. If multiple flanking exons are available, use the shortest CDS sequence. If no CDS, the shortest sequence.
-3. Calculate percent spliced-in (Psi) scores for MXE and SE events from (2)
+3. Merge SE, MXE events with overlapping flanking exons
+    1. If multiple flanking exons are available (such as exon1 has an alternative 5' start site), use the best-annotated event, as determined by the `appris_principal` tag from GENCODE
+4. Calculate percent spliced-in (Psi) scores for MXE and SE events from (2)
     1. Calculate percent spliced-in (Psi/$\Psi$) of SE and MXE events, based on junction reads.
-4. Splicing gene id, name annotations with event definitions from (2)
+5. Splicing gene id, name annotations with event definitions from (2)
     1. Start a splicing event annotation table.
     2. Get gene ids corresponding to SE and MXE event annotations
     3. Use these ids to intersect with previously created gene annotations.
-5. Extract constitutive and alternative exons, write to bed file, submit job to calculate conservation
+6. Extract constitutive and alternative exons, write to bed file, submit job to calculate conservation
     1. Create bed files of alternative and constitutive exons.
     2. Submit a compute job to calculate mean placental mammal conservation of exon bodies (`bigWigAverageOverBed`).
-6. Calculate exon properties (conservation, splice site strength)
+7. Calculate exon properties (conservation, splice site strength)
     2. Use bed files from (5) to calculate splice site strength ([Yeo et al, *J Comput Biol* 2004](http://www.ncbi.nlm.nih.gov/pubmed/15285897)
     3. Read calcualted conservation from (5)
     4. Add this information back to the splicing event annotation table.
-7. Ancient alternatively spliced exons (Merkin et al, 2012)
+8. Ancient alternatively spliced exons (Merkin et al, 2012)
     1. Obtain ancient alternatively spliced exon table from [Merkin et al, *Science* 2012](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3568499/)
     2. Use `liftOver` to convert rhesus macaque (`rheMac2`) coordinates to human (`hg19`) coordinates
     2. Overlap with identified alternative exons from (2).
     3. Add this information back to the splicing event annotation table.
-8. Save conservation wiggle as a memory-mapped Genomic Array
+9. Save conservation wiggle as a memory-mapped Genomic Array
     1. Use `HTSeq` to save a 79 gigabyte memory-mapped file of the placental mammal conservation at every genomic base of the human genome.
     2. This is done because it takes a long time to populate the array (overnight on a compute node) and it's easier to read in the pickle file, which takes about 30 min.
-9. Create CSVs of base-wise conservation of alternative and constitutive introns
+10. Create CSVs of base-wise conservation of alternative and constitutive introns
     1. Read the pickled memory-mapped conservation file from (8)
     2. Get base-wise conservation of introns flanking alternative and constitutive exons. This will be used in Figure 2 when describing intron conservation of alternative splicing modalities.
-10. Transcribe isoforms to get RNA sequence
-11. Submit miRNA finding compute job on sequences from (10)
+11. Transcribe isoforms to get RNA sequence
+12. Submit miRNA finding compute job on sequences from (10)
     1. Use first 17bp of microRNAs from [mirbase](http://www.mirbase.org/), since the ends of them are bound by Ago
     2. Use `RNAhybrid` to estimate which microRNAs may bind an isoform's transcript
-12. Properties of the isoforms' RNA sequence from (10)
+13. Properties of the isoforms' RNA sequence from (10)
     1. Use BioPython to calculate...
         1. GC content
         2. maybe: [Estiamte RNA structure (single or double stranded)]
     3. Add this information back to the splicing event annotation table.
-13. Translate isoforms to protein products
-14. Submit compute job for `hmmscan` on Pfam-A, calculate disordered scores on translations from (13)
+14. Translate isoforms to protein products
+15. Submit compute job for `hmmscan` on Pfam-A, calculate disordered scores on translations from (13)
     1. Use `hmmscan` to find protein domains on the isoform translations from (13)
     2. Use `IUPred` to calculate average disordered region score of each isoform
-15. Calculate properties of isoform protein products (isoelectric point, etc) on translations from (13)
+16. Calculate properties of isoform protein products (isoelectric point, etc) on translations from (13)
     1. Properties calculated:
         1. Molecular weight
         2. Isoelectric point
         3. ...
     2. Read disordered scores from (14)
     3. Add this information back to the splicing event annotation table.
-16. Read `hmmscan` output from (14) and get domain switching events
+17. Read `hmmscan` output from (14) and get domain switching events
     1. Aggregate domains on pfam clans to see whether the entire concept of a protein's function has changed
 
 
