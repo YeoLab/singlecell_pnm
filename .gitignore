@@ -3,10 +3,13 @@
 pfam2go*
 *.xls*
 
-# Submit scripts
+# Submit scripts and their outputs
 *.sh*
+*.err*
+*.out*
 
 # IPython/Jupyter notebook checkpoints
 .ipynb_checkpoints
 
 .nfs*
+
