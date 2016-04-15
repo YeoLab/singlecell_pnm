@@ -13,3 +13,6 @@ pfam2go*
 
 .nfs*
 
+
+# Huge file
+S10._Supplementary_Figure_10/metadata.csv 
