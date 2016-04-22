@@ -16,3 +16,6 @@ pfam2go*
 
 # Huge file
 S10._Supplementary_Figure_10/metadata.csv 
+
+# Ignore all CSVs to be safe
+*.csv
