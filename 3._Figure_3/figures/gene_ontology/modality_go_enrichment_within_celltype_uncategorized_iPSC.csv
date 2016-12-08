@@ -1,2 +1,0 @@
-,features_of_interest_in_go_term,features_of_interest_in_go_term_gene_symbols,go_domain,go_name,n_background_in_go_term,n_features_of_interest_in_go_term,n_features_total_in_go_term,negative_log_p_value,bonferonni_corrected_negative_log_p_value
-GO:0010467,"ENSG00000197111,ENSG00000125944,ENSG00000168214,ENSG00000156976,ENSG00000138668,ENSG00000101654","PCBP2,HNRNPR,RBPJ,EIF4A2,HNRNPD,RNMT",biological_process,gene expression,398,6,771,9.26139842245,8.16278613378
