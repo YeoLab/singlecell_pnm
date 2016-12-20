@@ -1,0 +1,2 @@
+,Splicing Gene,phenotype,Expression Gene,Pearson R,event_id,modality,gene_name,Correlation Direction
+96558,EIF5,NPC,ENSG00000204370,0.517757523753,exon:chr14:103800339-103800597:+@exon:chr14:103800726-103800934:+@exon:chr14:103801990-103802269:+,bimodal,SDHD,(+) Positive
