@@ -1,0 +1,21 @@
+
+# Downloaded files
+pfam2go*
+*.xls*
+
+# Submit scripts and their outputs
+*.sh*
+*.err*
+*.out*
+
+# IPython/Jupyter notebook checkpoints
+.ipynb_checkpoints
+
+.nfs*
+
+
+# Huge file
+S10._Supplementary_Figure_10/metadata.csv 
+
+# Ignore all CSVs to be safe
+*.csv
